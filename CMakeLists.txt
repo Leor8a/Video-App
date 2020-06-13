@@ -7,7 +7,8 @@ It runs until the close bracket.
 Setup for C++ 14  ]]
 
 add_subdirectory(lib/glfw)
-	
+
+add_definitions(-DGL_SILENCE_DEPERCATION)
 
 if(APPLE)
 
@@ -19,7 +20,9 @@ elseif(WIN32)
 	list(APPEND EXTRA_LIBS
 	"-lglu32 -opengl32"
 	)
+	set(CMAKE_EXE_LINKER_FLAGS "-std=gnu99 -static -static-libgcc static-libstdc++ -mwindows")
 else()
+
 	list(APPEND EXTRA_LIBS
 	"-lGL -lGLU -lX11"
 	)
